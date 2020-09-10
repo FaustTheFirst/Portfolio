@@ -9,7 +9,8 @@ jobs:
     steps:
       - checkout
       - run: npm install -q
-      - snyk/scan
+      - snyk/scan:
+        token-variable: SNYK_TOKEN
 workflows:
   test-and-scan:
     jobs:
