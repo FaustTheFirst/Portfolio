@@ -1,7 +1,9 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.0.0
+  snyk: snyk/snyk@0.0.12
 workflows:
   node-tests:
     jobs:
       - node/test
+      - snyk/scan
