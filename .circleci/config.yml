@@ -6,4 +6,13 @@ workflows:
   node-tests:
     jobs:
       - node/test
-      - snyk/scan
+  snyk-scanning:
+    jobs:
+      build:
+        docker:
+          - image: 'circleci/node:4.8.2'
+        steps:
+          - checkout
+          - run: npm install -q
+          - snyk/scan
+          
