@@ -3,12 +3,10 @@ orbs:
   snyk: snyk/snyk@0.0.12
   node: circleci/node@4.0.0
 workflows:
-  node-tests:
+  test-and-scan:
     jobs:
       - node/test
-  snyk-scanning:
-    jobs:
-      build:
+      - build:
         docker:
           - image: 'circleci/node:4.8.2'
         steps:
