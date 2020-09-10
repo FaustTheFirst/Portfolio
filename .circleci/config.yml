@@ -6,6 +6,7 @@ workflows:
   test-and-scan:
     jobs:
       - node/test
-      steps:
-        - snyk/scan
+      build:
+        steps:
+          - snyk/scan
       
