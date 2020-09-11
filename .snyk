@@ -1,0 +1,9 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-NODEFORGE-598677:
+    - react-scripts > webpack-dev-server > selfsigned > node-forge:
+        reason: no patch exists
+        expires: '2020-10-11T16:16:15.969Z'
+patch: {}
