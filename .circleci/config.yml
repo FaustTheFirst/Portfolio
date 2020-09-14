@@ -1,7 +1,14 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
-workflows:
-  node-tests:
-    jobs:
-      - node/test
+  coverage-reporter: codacy/coverage-reporter@11.3.1
+jobs:
+  codacy-coverage-report:
+    docker:
+      - image: 'circleci/openjdk:8-jdk'
+    steps:
+      - checkout
+      - run commands to generate the coverage result
+      - coverage-reporter/send_report:
+          coverage-reports: 'report.xml,coverage.info'
+          project-token: CODACY_PROJECT_TOKEN
+workflows: null
