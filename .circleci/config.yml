@@ -11,4 +11,3 @@ jobs:
       - coverage-reporter/send_report:
           coverage-reports: 'report.xml,coverage.info'
           project-token: CODACY_PROJECT_TOKEN
-workflows: null
