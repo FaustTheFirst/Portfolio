@@ -1,5 +1,5 @@
 jobs:
-  codacy-coverage-report:
+  build:
     docker:
       - image: 'circleci/openjdk:8-jdk'
     steps:
