@@ -8,6 +8,7 @@ jobs:
       - image: 'circleci/openjdk:8-jdk'
     steps:
       - checkout
+      - npm run test -- --coverage
       - coverage-reporter/send_report:
           coverage-reports: 'lcov.info, clover.xml'
           project-token: CODACY_PROJECT_TOKEN
