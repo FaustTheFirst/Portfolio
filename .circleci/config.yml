@@ -7,8 +7,12 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run test -- --coverage
+      - coverage-reporter/send_report:
+          coverage-reports: 'clover.xml,lcov.info'
+          project-token: CODACY_PROJECT_TOKEN
 orbs:
   node: circleci/node@4.0.0
+  coverage-reporter: codacy/coverage-reporter@11.3.1
 version: 2.1
 workflows:
   test_my_app:
