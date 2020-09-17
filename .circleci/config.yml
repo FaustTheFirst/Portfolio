@@ -9,7 +9,7 @@ jobs:
       - run: npm run test -- --coverage
       - coverage-reporter/send_report:
           coverage-reports: coverage/clover.xml
-          project-token: CODACY_PROJECT_TOKEN
+          project-token: CODACY_TOKEN
 orbs:
   node: circleci/node@4.0.0
   coverage-reporter: codacy/coverage-reporter@11.3.1
