@@ -8,7 +8,7 @@ jobs:
           override-ci-command: npm install
       - run: npm run test -- --coverage
       - coverage-reporter/send_report:
-          coverage-reports: coverage/clover.xml
+          coverage-reports: ./coverage/clover.xml
           project-token: CODACY_TOKEN
 orbs:
   node: circleci/node@4.0.0
