@@ -11,7 +11,7 @@ jobs:
           coverage-reports: coverage/clover.xml,coverage/lcov.info
           project-token: $CODACY_PROJECT_TOKEN
       - store_artifacts:
-          path: /coverage/lcov.info
+          path: coverage
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
