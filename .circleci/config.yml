@@ -7,15 +7,15 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run test
-  coverage-report:
+  repa:
     docker:
       image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - run: npm run test -- --coverage
       - coverage-reporter/send-report:
-        coverage-reports: coverage/clover.xml
-        project-token: CODACY_TOKEN
+          coverage-reports: coverage/clover.xml
+          project-token: CODACY_TOKEN
 orbs:
   node: circleci/node@4.0.0
   coverage-reporter: codacy/coverage-reporter@11.3.1
@@ -24,4 +24,6 @@ workflows:
   test_my_app:
     jobs:
       - test
-      - coverage-report
+      - repa:
+          requires:
+            - test
