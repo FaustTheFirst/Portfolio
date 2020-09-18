@@ -4,7 +4,6 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: npm run test -- --coverage
       - coverage-reporter/send_report:
           coverage-reports: coverage/clover.xml
           project-token: CODACY_TOKEN
