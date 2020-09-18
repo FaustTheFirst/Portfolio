@@ -6,7 +6,7 @@ jobs:
       - checkout
       - coverage-reporter/send_report:
           coverage-reports: clover.xml
-          project-token: CODACY_TOKEN
+          project-token: $CODACY_PROJECT_TOKEN
           skip: true
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
