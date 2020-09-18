@@ -1,12 +1,12 @@
 jobs:
-  codacy-coverage-report:
+  build:
     docker:
-      - image: 'circleci/openjdk:8-jdk'
+      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - run: npm run test -- --coverage
       - coverage-reporter/send_report:
-          coverage-reports: 'report.xml,coverage.info'
+          coverage-reports: coverage/clover.xml
           project-token: CODACY_TOKEN
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
