@@ -7,9 +7,10 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run test
+jobs:
   repa:
     docker:
-      image: 'circleci/openjdk:8-jdk'
+      image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - run: npm run test -- --coverage
