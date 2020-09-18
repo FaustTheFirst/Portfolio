@@ -24,6 +24,4 @@ workflows:
   test_my_app:
     jobs:
       - test
-      - repa:
-          requires:
-            - test
+      - repa
