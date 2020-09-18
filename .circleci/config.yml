@@ -24,6 +24,4 @@ workflows:
   test_my_app:
     jobs:
       - test
-      - coverage-report:
-        require:
-          - test
+      - coverage-report
