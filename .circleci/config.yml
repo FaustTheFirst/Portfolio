@@ -3,9 +3,18 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-{{ .Branch }}-
+            - node-v1-
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
+      - save_cache:
+          paths:
+            - ~/project/node_modules
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm run test -- --coverage
       - coverage-reporter/send_report:
           coverage-reports: coverage/clover.xml,coverage/lcov.info
