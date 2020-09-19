@@ -18,7 +18,7 @@ jobs:
       - run: npm run test -- --coverage
       - run:
           name: JUnit reporter
-          command: jest --ci --runInBand --testResultsProcessor="jset-junit"
+          command: jest --ci --runInBand --testResultsProcessor="jest-junit"
           environment:
             JEST_JUNIT_OUTPUT_DIR: test-results/junit/
       - store_test_results:
