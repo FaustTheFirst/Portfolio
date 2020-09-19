@@ -16,6 +16,13 @@ jobs:
             - ~/project/node_modules
           key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm run test -- --coverage
+      - run:
+          name: JUnit reporter
+          command: jest --ci --runInBand --testResultsProcessor="jset-junit"
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-results/junit/
+      - store_test_results:
+          path: test-results/junit/
       - coverage-reporter/send_report:
           coverage-reports: coverage/clover.xml,coverage/lcov.info
           project-token: $CODACY_PROJECT_TOKEN
