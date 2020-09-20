@@ -6,10 +6,10 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - run: npm run test -- --coverage
+      #- run: npm run test -- --coverage
       - run:
           name: JUnit reporter
-          command: npm run test:ci
+          command: npm run test:ci -- --coverage
           environment:
             JEST_JUNIT_OUTPUT_DIR: test-results/junit/
       - store_test_results:
@@ -18,7 +18,7 @@ jobs:
           coverage-reports: coverage/clover.xml,coverage/lcov.info
           project-token: $CODACY_PROJECT_TOKEN
       - store_artifacts:
-          path: coverage
+          path: test-results
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
