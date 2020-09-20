@@ -35,4 +35,6 @@ workflows:
   main-work:
     jobs:
       - init
-      - test-and-report
+      - test-and-report:
+          requires:
+            - init
