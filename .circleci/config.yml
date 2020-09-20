@@ -15,6 +15,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - restore_cache:
+          keys:
+            - node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
           name: Test and generate reports
           command: npm run test:ci -- --coverage
@@ -29,7 +32,11 @@ jobs:
           project-token: $CODACY_PROJECT_TOKEN
       - firebase-deploy/deploy:
           token: FIREBASE_TOKEN
-          alias: portfolio-d3164
+          alias: portfolio-development
+      - save_cache:
+          paths:
+            - ~/project/node_modules
+          key: node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
