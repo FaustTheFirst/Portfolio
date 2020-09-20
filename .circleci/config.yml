@@ -3,22 +3,13 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - node-v1-{{ .Branch }}-
-            - node-v1-
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - save_cache:
-          paths:
-            - ~/project/node_modules
-          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm run test -- --coverage
       - run:
           name: JUnit reporter
-          command: jest --ci --runInBand --testResultsProcessor="jest-junit"
+          command: npm run test:ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: test-results/junit/
       - store_test_results:
