@@ -27,9 +27,13 @@ jobs:
       - coverage-reporter/send_report:
           coverage-reports: coverage/lcov.info
           project-token: $CODACY_PROJECT_TOKEN
+      - firebase-deploy/deploy:
+          token: $FIREBASE_TOKEN
+          alias: portfolio-development
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
+  firebase-deploy: azdevs/firebase-deploy@1.0.0
 version: 2.1
 workflows:
   main-work:
