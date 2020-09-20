@@ -1,24 +1,38 @@
 jobs:
-  build:
+  init:
     executor: node/default
     steps:
       - checkout
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test-and-report:
+    executor: node/default
+    steps:
+      - attach_workspace:
+          at: .
       - run:
-          name: Complex test and report
+          name: Test and generate reports
           command: npm run test:ci -- --coverage
           environment:
             JEST_JUNIT_OUTPUT_DIR: coverage/junit/
       - store_test_results:
           path: coverage/junit/
+      - store_artifacts:
+          path: coverage
       - coverage-reporter/send_report:
           coverage-reports: coverage/lcov.info
           project-token: $CODACY_PROJECT_TOKEN
-      - store_artifacts:
-          path: coverage
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
 version: 2.1
+workflows:
+  main-work:
+    jobs:
+      - init
+      - test-and-report
