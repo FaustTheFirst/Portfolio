@@ -6,4 +6,8 @@ ignore:
     - react-scripts > webpack-dev-server > selfsigned > node-forge:
         reason: no patch exists
         expires: '2020-10-11T16:16:15.969Z'
+  SNYK-JS-AJV-584908:
+    - serve > ajv:
+        reason: no patch exists
+        expires: '2020-10-22T18:38:49.646Z'
 patch: {}

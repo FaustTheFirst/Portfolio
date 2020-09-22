@@ -21,7 +21,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.2.1"
+    "semantic-ui-react": "^1.2.1",
+    "serve": "^11.3.2"
   },
   "scripts": {
     "start": "serve -s build",
@@ -52,6 +53,6 @@
     "jest-junit": "^11.1.0",
     "react-lorem-ipsum": "^1.4.5",
     "redux-devtools-extension": "^2.13.8",
-    "snyk": "^1.393.0"
+    "snyk": "^1.399.1"
   }
 }
