@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "portfolio-d3164"
+  },
+  "targets": {
+    "portfolio-d3164": {
+      "hosting": {
+        "stg": [
+          "portfolio-development"
+        ]
+      }
+    }
   }
 }

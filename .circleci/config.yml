@@ -36,7 +36,7 @@ jobs:
           key: node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - firebase-deploy/deploy:
           token: $FIREBASE_TOKEN
-          alias: portfolio-development
+          alias: stg
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
