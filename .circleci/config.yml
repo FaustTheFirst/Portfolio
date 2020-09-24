@@ -38,7 +38,7 @@ jobs:
     executor: node/default
     steps:
       - attach_workspace:
-          at: ./build
+          at: /
       - run: ./node_modules/.bin/firebase deploy --only hosting:steig --token=$FIREBASE_TOKEN
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
