@@ -5,8 +5,8 @@
   "targets": {
     "portfolio-d3164": {
       "hosting": {
-        "stg": [
-          "portfolio-development"
+        "steig": [
+          "portfolio-developmente"
         ]
       }
     }

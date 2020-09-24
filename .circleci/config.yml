@@ -34,7 +34,7 @@ jobs:
           paths:
             - ~/project/node_modules
           key: node-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - run: ./node_modules/.bin/firebase deploy --only hosting:stg --token=$FIREBASE_TOKEN
+      - run: ./node_modules/.bin/firebase deploy --only hosting:steig --token=$FIREBASE_TOKEN
 orbs:
   coverage-reporter: codacy/coverage-reporter@11.3.1
   node: circleci/node@4.0.0
