@@ -1,12 +1,15 @@
 {
   "projects": {
-    "default": "portfolio-d3164"
+    "default": "portfolio-b34ac"
   },
   "targets": {
-    "portfolio-d3164": {
+    "portfolio-b34ac": {
       "hosting": {
-        "steig": [
-          "portfolio-developmente"
+        "dev": [
+          "b-p-dev"
+        ],
+        "prod": [
+          "bodyan"
         ]
       }
     }
