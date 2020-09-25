@@ -22,7 +22,7 @@ jobs:
           keys:
             - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - snyk/scan:
-          fall-on-issues: false
+          fail-on-issues: false
           token-variable: SNYK_TOKEN
 
   test-and-report:
