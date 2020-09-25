@@ -23,6 +23,7 @@ jobs:
             - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - snyk/scan:
           fail-on-issues: false
+          monitor-on-build: false
           token-variable: SNYK_TOKEN
 
   test-and-report:
@@ -71,3 +72,6 @@ workflows:
           requires:
             - vuln-check
             - test-and-report
+          filters:
+            branches:
+              only: develop
