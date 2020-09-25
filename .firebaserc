@@ -1,5 +1,17 @@
 {
   "projects": {
-    "default": "portfolio-1a9ca"
+    "default": "portfolio-b34ac"
+  },
+  "targets": {
+    "portfolio-b34ac": {
+      "hosting": {
+        "dev": [
+          "b-p-dev"
+        ],
+        "prod": [
+          "bodyan"
+        ]
+      }
+    }
   }
 }
