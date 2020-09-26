@@ -1,7 +1,94 @@
 version: 2.1
+
 orbs:
-  node: circleci/node@3.0.0
+  coverage-reporter: codacy/coverage-reporter@11.3.1
+  node: circleci/node@4.0.0
+  snyk: snyk/snyk@0.0.12
+
+jobs:
+  init:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+
+  vuln-check:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: false
+          token-variable: SNYK_TOKEN
+
+  test-and-report:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run:
+          name: Test and generate reports
+          command: npm run test:ci -- --coverage
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-reports/junit/
+      - store_test_results:
+          path: test-reports/junit/
+      - store_artifacts:
+          path:
+            coverage
+            test-reports
+      - coverage-reporter/send_report:
+          coverage-reports: coverage/lcov.info
+          project-token: $CODACY_PROJECT_TOKEN
+
+  deploy-dev:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run build
+      - run: ./node_modules/.bin/firebase deploy --only hosting:dev --token=$FIREBASE_TOKEN
+
+  deploy-prod:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run build
+      - run: ./node_modules/.bin/firebase deploy --only hosting:prod --token=$FIREBASE_TOKEN
+
 workflows:
-  node-tests:
+  main-work:
     jobs:
-      - node/test
+      - init
+      - vuln-check:
+          requires:
+            - init
+      - test-and-report:
+          requires:
+            - init
+      - deploy-dev:
+          requires:
+            - vuln-check
+            - test-and-report
+          filters:
+            branches:
+              only: develop
+      - deploy-prod:
+          requires:
+            - vuln-check
+            - test-and-report
+          filters:
+            branches:
+              only: master
