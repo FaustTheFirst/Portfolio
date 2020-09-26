@@ -1,6 +1,19 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "author": "Bohdan Panashenko",
+  "license": "MIT",
+  "description": "My own portfolio and, in fact, my first project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FaustTheFirst/portfolio"
+  },
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
+  "main": "src/index.jsx",
+  "bugs": "https://github.com/FaustTheFirst/portfolio/issues",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
