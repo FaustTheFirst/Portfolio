@@ -43,6 +43,8 @@ jobs:
       - store_artifacts:
           path:
             coverage
+      - store_artifacts:
+          path:
             test-reports
       - coverage-reporter/send_report:
           coverage-reports: coverage/lcov.info

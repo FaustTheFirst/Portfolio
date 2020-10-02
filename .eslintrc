@@ -3,8 +3,16 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"],
+  "extends": [
+    "react-app",
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
+    "plugin:sonarjs/recommended",
+    "plugin:react-redux/recommended"
+  ],
+  "plugins": ["jsx-a11y", "testing-library", "sonarjs", "react-redux"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -12,7 +20,14 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
+  "ignorePatterns": ["serviceWorker.js"],
   "rules": {
     "comma-dangle": ["error", "never"]
+  },
+  "reportUnusedDisableDirectives": true,
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
