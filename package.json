@@ -59,6 +59,6 @@
     "jest-junit": "^11.1.0",
     "react-lorem-ipsum": "^1.4.7",
     "redux-devtools-extension": "^2.13.8",
-    "snyk": "^1.406.0"
+    "snyk": "^1.425.4"
   }
 }
